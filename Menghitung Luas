@@ -1,0 +1,89 @@
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+   Scanner scanner = new Scanner(System.in);
+        int pilihan = scanner.nextInt();
+        double luas = 0;
+        if (pilihan == 1) {
+            try {
+                int sisi = scanner.nextInt();
+                Persegi persegi = new Persegi(sisi);
+                luas = persegi.getLuas();
+            } catch (Exception e) {
+                System.out.println("Input yang anda masukan tidak sesuai");
+                return;
+            }
+        } else if (pilihan == 2) {
+            try {
+                int alas = scanner.nextInt();
+                int tinggi = scanner.nextInt();
+                Segitiga segitiga = new Segitiga(alas, tinggi);
+                luas = segitiga.getLuas();
+            } catch (Exception e) {
+                System.out.println("Input yang anda masukan tidak sesuai");
+                return;
+            }
+        } else if (pilihan == 3) {
+            try {
+                int jariJari = scanner.nextInt();
+                Lingkaran lingkaran = new Lingkaran(jariJari);
+                luas = lingkaran.getLuas();
+            } catch (Exception e) {
+                System.out.println("Input yang anda masukan tidak sesuai");
+                return;
+            }
+        } else {
+            System.out.println("Input yang anda masukan tidak sesuai");
+            return;
+        }
+
+        System.out.printf("%.0f", Math.floor(luas));
+    }
+}
+
+class Persegi {
+    int sisi;
+
+    public Persegi(int sisi) {
+        this.sisi = sisi;
+    }
+
+    public double getLuas() {
+        return sisi * sisi;
+    }
+}
+
+class Segitiga {
+    int alas;
+    int tinggi;
+
+    public Segitiga(int alas, int tinggi) {
+        this.alas = alas;
+        this.tinggi = tinggi;
+    }
+
+    public double getLuas() {
+        return 0.5 * alas * tinggi;
+    }
+}
+
+class Lingkaran {
+    int jariJari;
+
+    public Lingkaran(int jariJari) {
+        this.jariJari = jariJari;
+    }
+
+    public double getLuas() {
+        if (jariJari % 7 == 0) {
+            return (22 * jariJari * jariJari) / 7;
+        } else {
+            return 3.14 * jariJari * jariJari;
+        }
+    }
+}
